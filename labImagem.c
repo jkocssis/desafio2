@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
 	readImage(arqEntrada, R, G, B, &cols, &rows);// abre o arquivo
 
   
-  if (strcmp(efeito, "cinza")==0) 
+  if (strcmp(efeito, "cinza")==0) //opcoes
   {
       escalaCinza(R, G, B, novaR, novaG, novaB, cols,  rows);
   }
