@@ -99,14 +99,14 @@ void esticarContraste(int R[MAX][MAX], int G[MAX][MAX], int B[MAX][MAX], int nov
   minG = mminimo(G,  cols,  rows);
 
   //calcula o novo contraste a partir de maximos e minimos determinados anteriormente
-  int intR =(maxR-minR), intB = (maxB-minB), intG =(maxG - minG);
+  float intR =255/(maxR-minR), intB = 255/(maxB-minB), intG =255/(maxG - minG);
   for(int i = 0; i < rows; i++)
   {
     for (int j = 0; j<cols; j++)
     {
-      novaR[i][j] = ((R[i][j] - minR) * 255 )/ intR;
-      novaG[i][j] = ((G[i][j] - minG) * 255 )/ intG;
-      novaB[i][j] = ((B[i][j] - minB) * 255 )/ intB; 
+      novaR[i][j] = ((R[i][j] - minR) * (int) intR );
+      novaG[i][j] = ((G[i][j] - minG) * (int) intG );
+      novaB[i][j] = ((B[i][j] - minB) * (int) intB ); 
     }
   }
 
@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
 	readImage(arqEntrada, R, G, B, &cols, &rows);// abre o arquivo
 
   
-  if (strcmp(efeito, "cinza")==0) //opcoes
+  if (strcmp(efeito, "cinza")==0) //seleciona as opcoes de filtro
   {
       escalaCinza(R, G, B, novaR, novaG, novaB, cols,  rows);
   }
@@ -168,7 +168,7 @@ int main(int argc, char **argv) {
   }
    
 	
-	writeImage(arqSaida,novaR, novaG, novaB, cols,rows);
+	writeImage(arqSaida,novaR, novaG, novaB, cols,rows);//escreve o arquivo passado em arqSaida
 
   return 0;
 }
